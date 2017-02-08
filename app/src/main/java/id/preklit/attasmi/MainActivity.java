@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mText;
     private TextView mText2;
     private SpeechRecognizer sr;
-    private static final String TAG = "MyStt3Activity";
+    private static final String TAG = "TestRecognizeAttasmi";
+    private String str, str2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button cekButton = (Button) findViewById(R.id.cek);
         mText = (TextView) findViewById(R.id.teks);
         mText2 = (TextView) findViewById(R.id.teks2);
+        mText.setText(str);
         cekButton.setOnClickListener(this);
         sr = SpeechRecognizer.createSpeechRecognizer(this);
         sr.setRecognitionListener(new RecognitionListener() {
@@ -62,18 +64,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onResults(Bundle results) {
-//                String str = new String();
-//                Log.d(TAG, "onResults " + results);
-//                ArrayList data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-//                for (int i = 0; i < data.size(); i++)
-//                {
-//                    Log.d(TAG, "result " + data.get(i));
-//                    str += data.get(i);
+                String str = new String();
+                Log.d(TAG, "onResults " + results);
+                ArrayList data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                for (int i = 0; i < 1; i++)
+                {
+                    Log.d(TAG, "result " + data.get(i));
+                    str += data.get(i);
 //                    if(i != data.size() - 1) {
 //                        str += " || ";
 //                    }
-//                }
-//                mText.setText(str);
+                }
+                mText.setText(str);
+                if(new ArabicDiacritics("بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ").getOutput().equals(str)) {
+                    mText2.setText("Benar");
+                } else {
+                    mText2.setText("Salah");
+                    Log.d(TAG, str);
+                    Log.d(TAG, new ArabicDiacritics("بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ").getOutput());
+                }
             }
 
             @Override
@@ -86,17 +95,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     Log.d(TAG, "result " + data.get(i));
                     str2 += data.get(i);
-                    if(i != data.size() - 1) {
-                        str2 += " || ";
-                    }
                 }
-                Log.d(TAG, "final result " + str2);
+//                char[] strChars = str2.toCharArray();
+//                for(int i=0; i < str2.length(); i++) {
+//                    if(strChars[i] == ' ') {
+//                        strChars[i] = '_';
+//                    }
+//                }
+//                str2 = String.valueOf(strChars);
+                Log.d(TAG, str2);
                 mText2.setText(str2);
-                if(str2 == "بسم الله الرحمن الرحيمِ") {
-                    mText.setText("Benar");
-                } else {
-                    mText.setText("Masih Salah بسم الله الرحمن الرحيم");
-                }
+//                String testCase = new ArabicDiacritics("بسم_الله_الرحمن_الرحيم").getOutput();
+//                char[] strCharTestCase = testCase.toCharArray();
+//                for(int i=0; i < testCase.length(); i++) {
+//                    if(strCharTestCase[i] == ' ') {
+//                        strCharTestCase[i] = '_';
+//                    }
+//                }
+//                testCase = String.valueOf(strChars);
+//                if(str2 == testCase) {
+//                    mText.setText("Benar");
+//                } else {
+//                    mText.setText(testCase);
+//                }
 
             }
 
@@ -113,10 +134,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             //intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ar-EG");
-            intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"voice.recognition.test");
-            intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
+            //intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
 
-            intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,5);
+            intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
             sr.startListening(intent);
             Log.i("111111","11111111");
         }

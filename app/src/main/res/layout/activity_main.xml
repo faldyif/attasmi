@@ -12,10 +12,17 @@
     tools:context="id.preklit.attasmi.MainActivity">
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/test_case"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test case akan muncul disini" />
+
+    <TextView
         android:id="@+id/teks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mulai berbicara!" />
+        android:text="Suaramu akan tertampil disini" />
 
     <TextView
         android:textColor="@color/colorPrimary"

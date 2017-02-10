@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     tools:context="id.preklit.attasmi.SurahListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/surah_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment surah list" />
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </FrameLayout>

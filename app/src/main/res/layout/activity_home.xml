@@ -27,6 +27,23 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
+                <ImageView
+                    android:id="@+id/yourlogo"
+                    android:layout_width="41dp"
+                    android:layout_height="41dp"
+                    android:src="@drawable/logo_white"
+                    android:padding="8dp"
+                    android:layout_gravity="left"/>
+
+                <TextView
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textStyle="bold"
+                    android:text="Attasmi"
+                    android:textSize="21dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp" />
+
             </android.support.v7.widget.Toolbar>
 
             <android.support.design.widget.TabLayout

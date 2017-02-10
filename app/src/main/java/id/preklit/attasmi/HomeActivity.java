@@ -59,8 +59,8 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_book_white_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_bookmark_white_24dp);
 
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false); //optional
+//        getSupportActionBar().setIcon(R.drawable.logo_white);
+        getSupportActionBar().setDisplayShowTitleEnabled(false); //optional
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

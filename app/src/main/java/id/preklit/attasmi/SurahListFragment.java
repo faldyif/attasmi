@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,8 +31,12 @@ public class SurahListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    String[] surahNames = {"Android","IPhone","WindowsMobile","Blackberry",
+    String[] surahNames = {"Al-Fatihah","Al-Baqarah","Al-'Imran","An-Nisa",
+            "Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal"};
+    String[] surahTranslations = {"Android","IPhone","WindowsMobile","Blackberry",
             "WebOS","Ubuntu","Windows7","Max OS X"};
+    Integer[] surahVersesCount = {7, 286, 200, 176, 120, 165, 206, 75};
+    ArrayList<Surah> surahs;
 
     private OnFragmentInteractionListener mListener;
 
@@ -71,7 +77,18 @@ public class SurahListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_surah_list, container, false);
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.activity_listview_surah, R.id.label, surahNames);
+        surahs = new ArrayList<>();
+
+        surahs.add(new Surah("Al-Fatihah", "Pembukaan", 7));
+        surahs.add(new Surah("Al-Baqarah", "Sapi Betina", 286));
+        surahs.add(new Surah("Al-'Imran", "Keluarga Imran", 200));
+        surahs.add(new Surah("Al-Nisa'", "Wanita", 176));
+        surahs.add(new Surah("Al-Maidah", "Hidangan", 120));
+        surahs.add(new Surah("Al-An'am", "Binatang Ternak", 165));
+        surahs.add(new Surah("Al-A'raf", "Tempat Tertinggi", 206));
+        surahs.add(new Surah("Al-Anfal", "Harta Rampasan Perang", 75));
+
+        SurahAdapter adapter = new SurahAdapter(surahs, getActivity().getApplicationContext());
 
         ListView listView = (ListView) view.findViewById(R.id.surah_list);
         listView.setAdapter(adapter);
